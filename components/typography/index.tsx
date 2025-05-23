@@ -11,7 +11,7 @@ interface Props {
 export function Header1({ children }: Props) {
   return (
     <div className="mb-2">
-      <span className={title()}>{children}</span>
+      <span className={title({ size: 'sm' })}>{children}</span>
     </div>
   );
 }
