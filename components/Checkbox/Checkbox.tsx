@@ -2,8 +2,6 @@
 
 import { Checkbox as HeroCheckbox } from '@heroui/react';
 
-import { Text } from '../typography';
-
 interface Props {
   label: string;
   isChecked: boolean;

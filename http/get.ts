@@ -14,5 +14,6 @@ export async function get<T, ErrorData = undefined>({
   }
 
   const result = (await res.json()) as T & { message: string };
+
   return result;
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import { Logout } from '@mui/icons-material';
 import {
   Navbar as HeroUINavbar,
   NavbarContent,
@@ -12,8 +13,9 @@ import {
 import { link as linkStyles } from '@heroui/theme';
 import NextLink from 'next/link';
 import clsx from 'clsx';
-import { Input, Kbd, Link } from '@heroui/react';
+import { Avatar, Input, Kbd, Link } from '@heroui/react';
 import { siteConfig } from '@config';
+import { useUser } from '@app';
 
 import {
   DiscordIcon,
@@ -23,6 +25,7 @@ import {
   TwitterIcon,
 } from './icons';
 import { ThemeSwitch } from './theme-switch';
+import { Menu } from './Menu/Menu';
 
 export const Navbar = () => {
   const searchInput = (
@@ -46,13 +49,15 @@ export const Navbar = () => {
     />
   );
 
+  const { user } = useUser();
+
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <Logo />
-            <p className="font-bold text-inherit">ACME</p>
+            <p className="font-bold text-inherit">Kor ska oss reis</p>
           </NextLink>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
@@ -134,6 +139,35 @@ export const Navbar = () => {
           ))}
         </div>
       </NavbarMenu>
+
+      {user && (
+        <Menu
+          menus={[
+            { label: 'My Profile', href: '/' },
+            { label: 'My Settings', href: '/settings' },
+            { label: 'Team Settings', href: '/team-settings' },
+            { label: 'Analytics', href: '/analytics' },
+            { label: 'System', href: '/system' },
+            { label: 'Configurations', href: '/configurations' },
+            { label: 'Help & Feedback', href: '/help-and-feedback' },
+            {
+              label: 'Log Out',
+              href: '/logout',
+              color: 'danger',
+              icon: <Logout />,
+            },
+          ]}
+        >
+          <Avatar
+            showFallback
+            as="button"
+            className="transition-transform"
+            name={user.name}
+            radius="md"
+            src={user.avatar}
+          />
+        </Menu>
+      )}
     </HeroUINavbar>
   );
 };

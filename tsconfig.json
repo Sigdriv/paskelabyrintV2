@@ -26,7 +26,10 @@
       "@hooks": ["./api/hooks"],
       "@styles": ["./styles/globals.css"],
       "@types": ["./types"],
-      "@http": ["./http"]
+      "@http": ["./http"],
+      "@app": ["./app"],
+      "@schema": ["./globalSchema"],
+      "@utils": ["./utils"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

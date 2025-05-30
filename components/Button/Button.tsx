@@ -31,13 +31,16 @@ export function Button({
   isLoading,
   color = 'default',
   isIconOnly = false,
+  type,
 }: Props) {
   return (
     <HeroButton
+      fullWidth
       className="m-2"
       color={color}
       isIconOnly={isIconOnly}
       isLoading={isLoading}
+      type={type}
       variant={variant}
       onPress={onClick}
     >

@@ -3,6 +3,7 @@ export { Card } from './Card/Card';
 export { Checkbox } from './Checkbox/Checkbox';
 export { Code } from './Code/Code';
 export { Footer } from './Footer/Footer';
+export { Form } from './Form/Form';
 export { Navbar } from './navbar';
 export { TextInput } from './TextInput/TextInput';
 export { ThemeSwitch } from './theme-switch';
