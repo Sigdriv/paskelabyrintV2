@@ -13,7 +13,7 @@ interface Props {
 
 export function Card({ header, children }: Props) {
   return (
-    <HeroCard className={`w-fit p-4`}>
+    <HeroCard className="w-full max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-4">
       <CardHeader>
         <Header1>{header}</Header1>
       </CardHeader>

@@ -15,7 +15,7 @@ export const authRoutes = [
   '/auth/signin',
   '/auth/signup',
   '/auth/glemt-passord',
-  '/auth/glemt-passord/*',
+  '/auth/glemt-passord/[token]',
 ];
 
 /**

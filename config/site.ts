@@ -1,64 +1,32 @@
 export type SiteConfig = typeof siteConfig;
 
+const items = [
+  {
+    label: 'Hjem',
+    href: '/',
+  },
+  {
+    label: 'Bli med',
+    href: '/',
+  },
+  {
+    label: 'Kontakt oss',
+    href: '/kontakt-oss',
+  },
+];
+
 export const siteConfig = {
   name: 'Kor ska oss reis',
   description: 'Make beautiful websites regardless of your design experience.',
   navItems: [
+    ...items,
     {
-      label: 'Home',
-      href: '/',
-    },
-    {
-      label: 'Docs',
-      href: '/docs',
-    },
-    {
-      label: 'Pricing',
-      href: '/pricing',
-    },
-    {
-      label: 'Blog',
-      href: '/blog',
-    },
-    {
-      label: 'About',
-      href: '/about',
+      label: 'Logg inn',
+      href: '/auth/signin',
     },
   ],
-  navMenuItems: [
-    {
-      label: 'Profile',
-      href: '/profile',
-    },
-    {
-      label: 'Dashboard',
-      href: '/dashboard',
-    },
-    {
-      label: 'Projects',
-      href: '/projects',
-    },
-    {
-      label: 'Team',
-      href: '/team',
-    },
-    {
-      label: 'Calendar',
-      href: '/calendar',
-    },
-    {
-      label: 'Settings',
-      href: '/settings',
-    },
-    {
-      label: 'Help & Feedback',
-      href: '/help-feedback',
-    },
-    {
-      label: 'Logout',
-      href: '/logout',
-    },
-  ],
+  signinItems: [...items],
+  navMenuItems: [...items],
   links: {
     github: 'https://github.com/heroui-inc/heroui',
     twitter: 'https://twitter.com/hero_ui',

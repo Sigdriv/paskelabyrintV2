@@ -3,6 +3,7 @@
 import type { ReactNode } from 'react';
 
 import { Button as HeroButton } from '@heroui/react';
+import { useRouter } from 'next/navigation';
 
 type BaseProps = {
   children: ReactNode;
@@ -16,11 +17,18 @@ type Props = BaseProps &
   (
     | {
         type: 'submit' | 'reset';
-        onClick?: never;
+        onClick?: () => void;
+        href?: never;
       }
     | {
-        type?: never;
         onClick: () => void;
+        type?: never;
+        href?: never;
+      }
+    | {
+        href: string;
+        type?: never;
+        onClick?: never;
       }
   );
 
@@ -32,19 +40,29 @@ export function Button({
   color = 'default',
   isIconOnly = false,
   type,
+  href,
 }: Props) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (href) {
+      router.push(href);
+    }
+  };
+
   return (
-    <HeroButton
-      fullWidth
-      className="m-2"
-      color={color}
-      isIconOnly={isIconOnly}
-      isLoading={isLoading}
-      type={type}
-      variant={variant}
-      onPress={onClick}
-    >
-      {children}
-    </HeroButton>
+    <div className="m-2 w-full">
+      <HeroButton
+        fullWidth
+        color={color}
+        isIconOnly={isIconOnly}
+        isLoading={isLoading}
+        type={type}
+        variant={variant}
+        onPress={onClick || (href ? handleClick : undefined)}
+      >
+        {children}
+      </HeroButton>
+    </div>
   );
 }

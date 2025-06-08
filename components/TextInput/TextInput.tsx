@@ -45,7 +45,6 @@ export function TextInput({
         type === 'password' ? (
           <button
             aria-label="toggle password visibility"
-            className="focus:outline-none"
             type="button"
             onClick={() => setShowPassword(!showPassword)}
           >

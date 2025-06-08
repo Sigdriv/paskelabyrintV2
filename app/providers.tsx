@@ -6,7 +6,11 @@ import * as React from 'react';
 import { HeroUIProvider } from '@heroui/system';
 import { useRouter } from 'next/navigation';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  QueryCache,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 import { addToast, ToastProvider } from '@heroui/react';
 import { TkError } from '@http';
 
@@ -24,19 +28,26 @@ function onError(error: TkError | Error) {
       title: errorTitleMapper[error.statusCode],
       description: errorDescriptionMapper[error.statusCode],
       color: 'danger',
-      timeout: 10000,
     });
   } else {
     addToast({
       title: 'Ukjent feil',
       description: 'Vennligst prøv igjen senere.',
       color: 'danger',
-      timeout: 10000,
     });
   }
 }
 
 const queryClient = new QueryClient({
+  queryCache: new QueryCache({
+    onError: (err) => {
+      if (err instanceof TkError) {
+        if (err.statusCode === 401) return;
+      }
+
+      onError(err);
+    },
+  }),
   defaultOptions: {
     mutations: {
       onError,
@@ -52,7 +63,11 @@ export function Providers({ children, themeProps }: Props) {
       <QueryClientProvider client={queryClient}>
         <NextThemesProvider {...themeProps}>
           <UserProvider>
-            <ToastProvider />
+            <ToastProvider
+              toastProps={{
+                timeout: 10000,
+              }}
+            />
 
             {children}
           </UserProvider>

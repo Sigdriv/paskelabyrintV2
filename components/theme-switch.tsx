@@ -35,7 +35,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
     getWrapperProps,
   } = useSwitch({
     isSelected: theme === 'light' || isSSR,
-    'aria-label': `Switch to ${theme === 'light' || isSSR ? 'dark' : 'light'} mode`,
+    'aria-label': `Bytte til ${theme === 'light' || isSSR ? 'mørk' : 'lyst'} modus`,
     onChange,
   });
 

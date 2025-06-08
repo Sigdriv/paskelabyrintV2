@@ -6,7 +6,7 @@ type TkErrorType<T> = {
 
 export class TkError<ErrorData = undefined> extends Error {
   data?: ErrorData;
-  statusCode: 400 | 401 | 404 | 409 | 500;
+  statusCode: 400 | 401 | 404 | 409 | 410 | 500;
 
   constructor({ data, errorText, statusCode }: TkErrorType<ErrorData>) {
     super(errorText);
@@ -16,6 +16,7 @@ export class TkError<ErrorData = undefined> extends Error {
       statusCode === 401 ||
       statusCode === 404 ||
       statusCode === 409 ||
+      statusCode === 410 ||
       statusCode === 500
     ) {
       this.statusCode = statusCode;

@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Card, Form, TextInput } from '@components';
+import { Button, Card, Form, SigninWithGoogle, TextInput } from '@components';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { checkSchemaError } from '@schema';
@@ -107,14 +107,16 @@ export default function Signup() {
             />
           </div>
 
-          <div className="flex flex-row gap-1 w-full">
-            <Button onClick={() => navigate('signin')}>
-              Allerede en bruker?
-            </Button>
+          <div className="w-full">
+            <div className="flex flex-row gap-1 w-full">
+              <Button href="signin">Logg inn</Button>
 
-            <Button isLoading={isPending} type="submit" variant="solid">
-              Opprett bruker
-            </Button>
+              <Button isLoading={isPending} type="submit" variant="solid">
+                Opprett bruker
+              </Button>
+            </div>
+
+            <SigninWithGoogle />
           </div>
         </Form>
       </Card>

@@ -9,3 +9,14 @@ export type Credentials = {
 export type CreateUser = Omit<User, 'id' | 'role' | 'createdAt' | 'avatar'> & {
   confirmPassword: string;
 };
+
+export type ForgottPassword = Omit<Credentials, 'password' | 'remember'>;
+
+export type ValidateToken = {
+  valid: boolean;
+};
+
+export type ResetPassword = {
+  password: string;
+  confirmPassword: string;
+};

@@ -1,6 +1,13 @@
 'use client';
 
-import { Button, Card, Checkbox, Form, TextInput } from '@components';
+import {
+  Button,
+  Card,
+  Checkbox,
+  Form,
+  SigninWithGoogle,
+  TextInput,
+} from '@components';
 import { addToast } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -52,40 +59,54 @@ export default function SignIn() {
               errorText={fieldError.email}
               isError={!!fieldError.email && isSubmitAttempted}
               label="E-post"
-              type="text"
+              type="email"
               value={credentials.email}
               onChange={(value) =>
                 setCredentials({ ...credentials, email: value })
               }
             />
 
-            <TextInput
-              isRequired
-              errorText={fieldError.password}
-              isError={!!fieldError.password && isSubmitAttempted}
-              label="Passord"
-              type="password"
-              value={credentials.password}
-              onChange={(value) =>
-                setCredentials({ ...credentials, password: value })
-              }
-            />
+            <div className="flex flex-col items-end">
+              <TextInput
+                isRequired
+                errorText={fieldError.password}
+                isError={!!fieldError.password && isSubmitAttempted}
+                label="Passord"
+                type="password"
+                value={credentials.password}
+                onChange={(value) =>
+                  setCredentials({ ...credentials, password: value })
+                }
+              />
+
+              <div className=" w-32">
+                <Button href="glemt-passord" variant="light">
+                  Glemt passord?
+                </Button>
+              </div>
+            </div>
+
+            <div className=" mt-[-2.5rem]">
+              <Checkbox
+                isChecked={credentials.remember}
+                label="Husk meg"
+                onChange={(value) =>
+                  setCredentials({ ...credentials, remember: value })
+                }
+              />
+            </div>
           </div>
 
-          <Checkbox
-            isChecked={credentials.remember}
-            label="Husk meg"
-            onChange={(value) =>
-              setCredentials({ ...credentials, remember: value })
-            }
-          />
+          <div className="w-full">
+            <div className="flex flex-row gap-1 w-full">
+              <Button href="signup">Opprett konto</Button>
 
-          <div className="flex flex-row gap-1 w-full">
-            <Button onClick={() => navigate('signup')}>Opprett konto</Button>
+              <Button isLoading={isPending} type="submit" variant="solid">
+                Logg inn
+              </Button>
+            </div>
 
-            <Button isLoading={isPending} type="submit" variant="solid">
-              Logg inn
-            </Button>
+            <SigninWithGoogle />
           </div>
         </Form>
       </Card>

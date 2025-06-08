@@ -1,11 +1,10 @@
 import { globalSchema } from '@schema';
 
 export function useSchema() {
-  const { createStringSchema, createEmailSchema } = globalSchema();
+  const { createEmailSchema } = globalSchema();
 
   const schema = {
     email: createEmailSchema(),
-    password: createStringSchema('Passord', 1, 4000),
   };
 
   return {

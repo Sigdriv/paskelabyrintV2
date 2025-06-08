@@ -20,7 +20,9 @@ export async function middleware(req: NextRequest) {
   const isApiAuthRoute = pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(pathname);
   const isUserRoute = isUserRoutes.includes(pathname);
-  const isAuthRoute = authRoutes.includes(pathname);
+  // const isAuthRoute = authRoutes.includes(pathname);
+  // TODO: Find out if theres a better way to do this:
+  const isAuthRoute = pathname.startsWith('/auth');
   const isAminRoute = pathname.startsWith('/admin');
   const isDevRoute = pathname.startsWith('/dev');
 

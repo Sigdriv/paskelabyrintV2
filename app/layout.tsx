@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 
 import clsx from 'clsx';
-import { Footer, Navbar } from '@components';
+import { Footer, NavBar } from '@components';
 import { fontSans, siteConfig } from '@config';
 
 import { Providers } from './providers';
@@ -47,7 +47,7 @@ export default function RootLayout({ children }: Props) {
           }}
         >
           <div className="relative flex flex-col h-screen">
-            <Navbar />
+            <NavBar />
 
             <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
               {children}
