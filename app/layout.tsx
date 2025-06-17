@@ -38,6 +38,7 @@ export default function RootLayout({ children }: Props) {
   return (
     <html suppressHydrationWarning lang="en">
       <head />
+
       {/* <head>
         <title>{`Kor ska oss reis | ${dynamicTitle ? dynamicTitle : 'Hjem'}`}</title>
       </head> */}

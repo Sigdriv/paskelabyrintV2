@@ -9,9 +9,12 @@ export default function Home() {
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="inline-block max-w-xl text-center justify-center">
         <Header1>Make&nbsp;</Header1>
+
         {/* <span className={title({ color: "violet" })}>beautiful&nbsp;</span> */}
         <br />
+
         <Header1>websites regardless of your design experience.</Header1>
+
         {/* <div className={subtitle({ class: "mt-4" })}>
           Beautiful, fast and modern React UI library.
         </div> */}
@@ -29,6 +32,7 @@ export default function Home() {
         >
           Documentation
         </Link>
+
         <Link
           isExternal
           className={buttonStyles({ variant: 'bordered', radius: 'full' })}

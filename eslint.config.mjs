@@ -92,6 +92,7 @@ export default defineConfig([
     files: ['**/*.ts', '**/*.tsx'],
 
     rules: {
+      'react/jsx-newline': ['error', { prevent: false }],
       'no-console': 'warn',
       'react/prop-types': 'off',
       'react/jsx-uses-react': 'off',

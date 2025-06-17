@@ -13,6 +13,7 @@ export function Footer() {
         title="Sigdriv on GitHub"
       >
         <span className="text-default-600">Laget av</span>
+
         <p className="text-primary">Sigdriv</p>
       </Link>
     </footer>
