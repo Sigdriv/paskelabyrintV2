@@ -33,7 +33,7 @@ export function Table({ header, items, emptyText, isLoading, error }: Props) {
         variant="danger"
       />
 
-      <HeroTable isStriped>
+      <HeroTable isHeaderSticky isStriped>
         <TableHeader columns={header}>
           {header.map(({ label }, index) => (
             <TableColumn key={JSON.stringify({ label, index })}>

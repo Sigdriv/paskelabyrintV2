@@ -26,7 +26,7 @@ export default function AllUsers() {
           <div key={JSON.stringify({ id, name })}>{name}</div>,
           <div key={JSON.stringify({ id, email })}>{email}</div>,
           <div key={JSON.stringify({ id, role })}>{role}</div>,
-          <UserActions key={id} userId={id} />,
+          <UserActions key={id} name={name} userId={id} />,
         ])}
       />
     </div>
