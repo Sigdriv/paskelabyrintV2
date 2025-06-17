@@ -51,7 +51,7 @@ export function Button({
   };
 
   return (
-    <div className="m-2 w-full">
+    <div className="my-2 w-full">
       <HeroButton
         fullWidth
         color={color}

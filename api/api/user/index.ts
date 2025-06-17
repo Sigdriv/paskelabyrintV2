@@ -1,9 +1,18 @@
 import type { User } from './types';
 
-import { get } from '@http';
+import { get, patch } from '@http';
 
 import { urls } from '../urls';
 
-export function getUser(): Promise<User> {
-  return get({ url: urls.getUser });
+export const roles = ['USER', 'ADMIN', 'DEV'] as const;
+
+export function getUser(userId?: string): Promise<User> {
+  return get({ url: urls.getUser(userId) });
+}
+
+export function updateUser(user: User): Promise<{ message: string }> {
+  return patch({
+    url: urls.updateUser,
+    body: user,
+  });
 }

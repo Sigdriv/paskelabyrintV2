@@ -1,4 +1,5 @@
 export const queryKeys = {
-  getUser: ['getUser'],
+  getUser: (userId?: string) => ['getUser', userId],
   validateToken: (token: string) => [`auth/validate-token/${token}`],
+  getUsers: ['getUsers'],
 };

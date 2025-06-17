@@ -7,6 +7,7 @@ import { Footer, NavBar } from '@components';
 import { fontSans, siteConfig } from '@config';
 
 import { Providers } from './providers';
+// import { useDynamicTitle } from './useDynamicTitle';
 
 export const metadata: Metadata = {
   title: {
@@ -31,9 +32,15 @@ interface Props {
 }
 
 export default function RootLayout({ children }: Props) {
+  // TODO: This
+  // const dynamicTitle = useDynamicTitle();
+
   return (
     <html suppressHydrationWarning lang="en">
       <head />
+      {/* <head>
+        <title>{`Kor ska oss reis | ${dynamicTitle ? dynamicTitle : 'Hjem'}`}</title>
+      </head> */}
       <body
         className={clsx(
           'min-h-screen text-foreground bg-background font-sans antialiased',

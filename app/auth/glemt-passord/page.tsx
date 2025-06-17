@@ -39,24 +39,22 @@ export default function ForgottenPassword() {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <Card header="Tilbakestill passord">
-        <Form action="submit" onAction={handleResetPassword}>
-          <TextInput
-            isRequired
-            errorText={fieldError.email}
-            isError={!!fieldError.email && isSubmittAttempted}
-            label="E-post"
-            type="email"
-            value={email}
-            onChange={(value) => setEmail(value)}
-          />
+    <Card align="center" header="Tilbakestill passord">
+      <Form action="submit" onAction={handleResetPassword}>
+        <TextInput
+          isRequired
+          errorText={fieldError.email}
+          isError={!!fieldError.email && isSubmittAttempted}
+          label="E-post"
+          type="email"
+          value={email}
+          onChange={(value) => setEmail(value)}
+        />
 
-          <Button isLoading={isPending} type="submit" variant="solid">
-            Tilbakestill
-          </Button>
-        </Form>
-      </Card>
-    </div>
+        <Button isLoading={isPending} type="submit" variant="solid">
+          Tilbakestill
+        </Button>
+      </Form>
+    </Card>
   );
 }

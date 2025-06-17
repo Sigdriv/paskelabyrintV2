@@ -29,7 +29,8 @@
       "@http": ["./http"],
       "@app": ["./app"],
       "@schema": ["./globalSchema"],
-      "@utils": ["./utils"]
+      "@utils": ["./utils"],
+      "@websocket": ["./websocket"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

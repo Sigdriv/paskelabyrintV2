@@ -5,4 +5,6 @@ export { useGoogleSignin } from './auth/useGoogleSignin';
 export { useResetPassword } from './auth/useResetPassword';
 export { useSignInCredentials } from './auth/useSignInCredentials';
 export { useSignOut } from './auth/useSignOut';
+export { useUpdateUser } from './user/useUpdateUser';
+export { useUsers } from './users/useUsers';
 export { useValidateToken } from './auth/useValidateToken';

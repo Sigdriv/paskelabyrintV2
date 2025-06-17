@@ -1,4 +1,6 @@
-export type Role = 'USER' | 'ADMIN' | 'DEV';
+import type { roles } from '.';
+
+export type Role = (typeof roles)[number];
 
 export type User = {
   id: string;

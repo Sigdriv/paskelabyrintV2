@@ -1,7 +1,6 @@
 'use client';
 
 import { Alert } from '@heroui/react';
-import { useState } from 'react';
 
 interface Props {
   isVisible?: boolean;
@@ -22,6 +21,7 @@ export function InfoBox({
 }: Props) {
   return (
     <Alert
+      className="mb-4 w-fit"
       color={variant}
       description={body}
       endContent={endContent}

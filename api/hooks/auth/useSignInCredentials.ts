@@ -1,11 +1,10 @@
 import type { Credentials } from '@api';
 import type { HooksParams } from '../utils';
 
-import { TkError } from '@http';
+import { errorTitleMapper, TkError } from '@http';
 import { signInWithCredentials } from '@api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addToast } from '@heroui/react';
-import { errorTitleMapper } from '@app';
 
 import { queryKeys } from '../queryKeys';
 
@@ -14,7 +13,7 @@ export function useSignInCredentials({
 }: HooksParams<void, Credentials>) {
   const queryClient = useQueryClient();
 
-  const queryKey = queryKeys.getUser;
+  const queryKey = queryKeys.getUser();
 
   return useMutation<void, TkError, Credentials>({
     mutationFn: signInWithCredentials,

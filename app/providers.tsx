@@ -12,9 +12,8 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import { addToast, ToastProvider } from '@heroui/react';
-import { TkError } from '@http';
+import { errorDescriptionMapper, errorTitleMapper, TkError } from '@http';
 
-import { errorDescriptionMapper, errorTitleMapper } from './utils';
 import { UserProvider } from './UserContext';
 
 export interface Props {

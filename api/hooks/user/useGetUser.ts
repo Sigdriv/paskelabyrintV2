@@ -6,12 +6,16 @@ import { getUser } from '@api';
 
 import { queryKeys } from '../queryKeys';
 
-export function useGetUser() {
-  const queryKey = queryKeys.getUser;
+interface Params {
+  userId?: string;
+}
+
+export function useGetUser({ userId }: Params = {}) {
+  const queryKey = queryKeys.getUser(userId);
 
   return useQuery<User, TkError>({
     queryKey,
-    queryFn: getUser,
+    queryFn: () => getUser(userId),
     retry: false,
   });
 }

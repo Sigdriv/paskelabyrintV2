@@ -50,66 +50,64 @@ export default function SignIn() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <Card header="Logg inn">
-        <Form action="submit" onAction={handleSignin}>
-          <div className="flex flex-col gap-4 w-full">
+    <Card align="center" header="Logg inn">
+      <Form action="submit" onAction={handleSignin}>
+        <div className="flex flex-col gap-4 w-full">
+          <TextInput
+            isRequired
+            errorText={fieldError.email}
+            isError={!!fieldError.email && isSubmitAttempted}
+            label="E-post"
+            type="email"
+            value={credentials.email}
+            onChange={(value) =>
+              setCredentials({ ...credentials, email: value })
+            }
+          />
+
+          <div className="flex flex-col items-end">
             <TextInput
               isRequired
-              errorText={fieldError.email}
-              isError={!!fieldError.email && isSubmitAttempted}
-              label="E-post"
-              type="email"
-              value={credentials.email}
+              errorText={fieldError.password}
+              isError={!!fieldError.password && isSubmitAttempted}
+              label="Passord"
+              type="password"
+              value={credentials.password}
               onChange={(value) =>
-                setCredentials({ ...credentials, email: value })
+                setCredentials({ ...credentials, password: value })
               }
             />
 
-            <div className="flex flex-col items-end">
-              <TextInput
-                isRequired
-                errorText={fieldError.password}
-                isError={!!fieldError.password && isSubmitAttempted}
-                label="Passord"
-                type="password"
-                value={credentials.password}
-                onChange={(value) =>
-                  setCredentials({ ...credentials, password: value })
-                }
-              />
-
-              <div className=" w-32">
-                <Button href="glemt-passord" variant="light">
-                  Glemt passord?
-                </Button>
-              </div>
-            </div>
-
-            <div className=" mt-[-2.5rem]">
-              <Checkbox
-                isChecked={credentials.remember}
-                label="Husk meg"
-                onChange={(value) =>
-                  setCredentials({ ...credentials, remember: value })
-                }
-              />
-            </div>
-          </div>
-
-          <div className="w-full">
-            <div className="flex flex-row gap-1 w-full">
-              <Button href="signup">Opprett konto</Button>
-
-              <Button isLoading={isPending} type="submit" variant="solid">
-                Logg inn
+            <div className=" w-32">
+              <Button href="glemt-passord" variant="light">
+                Glemt passord?
               </Button>
             </div>
-
-            <SigninWithGoogle />
           </div>
-        </Form>
-      </Card>
-    </div>
+
+          <div className=" mt-[-2.5rem]">
+            <Checkbox
+              isChecked={credentials.remember}
+              label="Husk meg"
+              onChange={(value) =>
+                setCredentials({ ...credentials, remember: value })
+              }
+            />
+          </div>
+        </div>
+
+        <div className="w-full">
+          <div className="flex flex-row gap-2 w-full">
+            <Button href="signup">Opprett konto</Button>
+
+            <Button isLoading={isPending} type="submit" variant="solid">
+              Logg inn
+            </Button>
+          </div>
+
+          <SigninWithGoogle />
+        </div>
+      </Form>
+    </Card>
   );
 }
