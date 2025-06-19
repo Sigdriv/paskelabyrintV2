@@ -30,7 +30,7 @@ export const errorDescriptionMapper = {
 
 export class TkError<ErrorData = undefined> extends Error {
   data?: ErrorData;
-  statusCode: 400 | 401 | 404 | 409 | 410 | 500;
+  statusCode: 400 | 401 | 403 | 404 | 409 | 410 | 500;
 
   constructor({ data, errorText, statusCode }: TkErrorType<ErrorData>) {
     super(errorText);
@@ -38,6 +38,7 @@ export class TkError<ErrorData = undefined> extends Error {
     if (
       statusCode === 400 ||
       statusCode === 401 ||
+      statusCode === 403 ||
       statusCode === 404 ||
       statusCode === 409 ||
       statusCode === 410 ||

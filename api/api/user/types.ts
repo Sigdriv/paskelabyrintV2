@@ -11,4 +11,5 @@ export type User = {
   phoneNr: string;
   createdAt: string;
   avatar: string;
+  isGoogle: boolean;
 };

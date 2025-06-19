@@ -1,11 +1,20 @@
-import { Button, Card, Text } from '@components';
+'use client';
+
+import { Button, Card, Code, Text } from '@components';
+import { useUsers } from '@hooks';
 
 export default function Dev() {
-  return (
-    <Card header="Se alle brukere">
-      <Text>Dette er en test</Text>
+  const { data = [] } = useUsers();
 
-      <Button href="dev/all-users">Se alle brukere</Button>
+  return (
+    <Card header="Alle brukere" headerAlign="center" width="max-w-md">
+      <div className="flex flex-col items-center gap-4">
+        <p className="text-default-500 text-xl">{data.length}</p>
+
+        <Button href="dev/all-users" variant="solid">
+          Se alle brukere
+        </Button>
+      </div>
     </Card>
   );
 }

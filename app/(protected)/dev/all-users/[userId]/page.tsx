@@ -60,49 +60,61 @@ export default function EditUser() {
           isLoading={isPending}
         />
 
-        {user && !isPending && (
-          <div className="w-full flex flex-col gap-4">
-            <TextInput
-              isRequired
-              defaultValue={user.name}
-              errorText={fieldError.name}
-              isError={!!fieldError.name && submitAttempted}
-              label="Navn"
-              type="text"
-              value={user.name}
-              onChange={(value) => setUser({ ...user, name: value })}
-            />
-
-            <TextInput
-              isRequired
-              defaultValue={user.email}
-              errorText={fieldError.email}
-              isError={!!fieldError.email && submitAttempted}
-              label="E-post"
-              type="email"
-              value={user.email}
-              onChange={(value) => setUser({ ...user, email: value })}
-            />
-
-            <Select<Role>
-              isRequired
-              errorText={fieldError.role}
-              isError={!!fieldError.role && submitAttempted}
-              label="Rolle"
-              options={[
-                { value: 'DEV', label: 'Dev' },
-                { value: 'ADMIN', label: 'Admin' },
-                { value: 'USER', label: 'User' },
-              ]}
-              value={user.role}
-              onChange={(value) => setUser({ ...user, role: value })}
-            />
-          </div>
+        {!isPending && !user && (
+          <p className="text-default-500">Fant ingen bruker med ID {userId}</p>
         )}
 
-        <Button isLoading={isUpdating} type="submit" variant="solid">
-          Oppdater bruker
-        </Button>
+        {!isPending && user && user.isGoogle && (
+          <p className="text-default-500">
+            Denne brukeren er opprettet via Google og kan ikke redigeres.
+          </p>
+        )}
+
+        {user && !user.isGoogle && !isPending && (
+          <>
+            <div className="w-full flex flex-col gap-4">
+              <TextInput
+                isRequired
+                defaultValue={user.name}
+                errorText={fieldError.name}
+                isError={!!fieldError.name && submitAttempted}
+                label="Navn"
+                type="text"
+                value={user.name}
+                onChange={(value) => setUser({ ...user, name: value })}
+              />
+
+              <TextInput
+                isRequired
+                defaultValue={user.email}
+                errorText={fieldError.email}
+                isError={!!fieldError.email && submitAttempted}
+                label="E-post"
+                type="email"
+                value={user.email}
+                onChange={(value) => setUser({ ...user, email: value })}
+              />
+
+              <Select<Role>
+                isRequired
+                errorText={fieldError.role}
+                isError={!!fieldError.role && submitAttempted}
+                label="Rolle"
+                options={[
+                  { value: 'DEV', label: 'Dev' },
+                  { value: 'ADMIN', label: 'Admin' },
+                  { value: 'USER', label: 'User' },
+                ]}
+                value={user.role}
+                onChange={(value) => setUser({ ...user, role: value })}
+              />
+            </div>
+
+            <Button isLoading={isUpdating} type="submit" variant="solid">
+              Oppdater bruker
+            </Button>
+          </>
+        )}
       </Form>
     </Card>
   );
