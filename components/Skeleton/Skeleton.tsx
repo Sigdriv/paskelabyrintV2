@@ -24,11 +24,11 @@ type ElementProps = {
 type Props = BaseProps & (ChildrenProps | ElementProps);
 
 export function Skeleton({ children, isLoading, elements }: Props) {
-  if (!isLoading) return null;
+  if (!isLoading) return children;
 
   if (children) {
     return (
-      <HeroSkeleton className=" rounded-lg w-full" isLoaded={!isLoading}>
+      <HeroSkeleton className=" rounded-medium w-full" isLoaded={!isLoading}>
         {children}
       </HeroSkeleton>
     );
@@ -38,7 +38,7 @@ export function Skeleton({ children, isLoading, elements }: Props) {
     return elements.map((element, index) => (
       <HeroSkeleton
         key={`${element}-${index}`}
-        className=" rounded-lg w-full mb-[-1rem] last:mb-0"
+        className=" rounded-medium w-full mb-[-1rem] last:mb-0"
         isLoaded={!isLoading}
       >
         {element === 'textInput' && (

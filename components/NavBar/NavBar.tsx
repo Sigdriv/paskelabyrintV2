@@ -14,6 +14,7 @@ import { Avatar, Link } from '@heroui/react';
 import { siteConfig } from '@config';
 import { useUser } from '@app';
 import { useSignOut } from '@hooks';
+import { useState } from 'react';
 
 import { ThemeSwitch } from '../theme-switch';
 import { Menu } from '../Menu/Menu';
@@ -25,10 +26,13 @@ export const NavBar = () => {
   const { user } = useUser();
   const { mutate } = useSignOut();
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const navItems = user ? siteConfig.signinItems : siteConfig.navItems;
 
   return (
-    <HeroUINavbar maxWidth="xl" position="sticky">
+    // <HeroUINavbar maxWidth="xl" position="sticky">
+    <HeroUINavbar isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-2" href="/">
@@ -68,6 +72,7 @@ export const NavBar = () => {
                 color={index === 1 ? 'primary' : 'foreground'}
                 href={item.href}
                 size="lg"
+                onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
               </Link>

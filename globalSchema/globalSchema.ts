@@ -1,6 +1,8 @@
 import { isValidPhoneNumber } from '@utils';
 import { z } from 'zod';
 
+import { isNumeric, notUndefined } from './utils';
+
 export function globalSchema() {
   const createStringSchema = (label: string, min: number, max: number) => {
     let stringSchema = z.string({
@@ -88,11 +90,58 @@ export function globalSchema() {
       });
   };
 
+  const createIntSchema = (label: string, min: number, max: number) => {
+    const numberSchema = z
+      .number({
+        invalid_type_error: `${label} er påkrevd`,
+        required_error: `${label} er påkrevd`,
+      })
+      .int({ message: `${label} må være et heltall` })
+      .min(min, `${label} må være minst ${min}`)
+      .max(max, `${label} kan ikke være mer enn ${max}`);
+
+    const isInteger = (val: string): boolean => {
+      const parsed = Number(val);
+
+      return Number.isInteger(parsed);
+    };
+
+    const stringSchema = z
+      .string({
+        invalid_type_error: `${label} er påkrevd`,
+        required_error: `${label} er påkrevd`,
+      })
+      .refine(isNumeric, {
+        message: `${label} må være et gyldig tall`,
+      })
+      .refine((val) => !(val.includes('.') || val.includes(',')), {
+        message: `${label} må være et heltall`,
+      })
+      .refine((val) => isInteger(val), {
+        message: `${label} må være et heltall`,
+      })
+      .refine((val) => val.trim() !== '', {
+        message: `${label} er påkrevd`,
+      })
+      .refine((val) => parseInt(val) >= min, {
+        message: `${label} må være minst ${min}`,
+      })
+      .refine((val) => parseInt(val) <= max, {
+        message: `${label} kan ikke være mer enn ${max}`,
+      });
+
+    return z
+      .union([numberSchema, stringSchema])
+      .optional()
+      .refine(notUndefined, { message: `${label} er påkrevd` });
+  };
+
   return {
     createStringSchema,
     createEmailSchema,
     createPhoneNrSchema,
     createPasswordSchema,
     createRepeatPasswordSchema,
+    createIntSchema,
   };
 }

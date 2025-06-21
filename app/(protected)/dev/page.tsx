@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Card, Code, Text } from '@components';
+import { Button, Card } from '@components';
 import { useUsers } from '@hooks';
 
 export default function Dev() {

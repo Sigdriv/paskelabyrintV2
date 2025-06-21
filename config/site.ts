@@ -7,7 +7,7 @@ const items = [
   },
   {
     label: 'Bli med',
-    href: '/',
+    href: '/bli-med',
   },
   {
     label: 'Kontakt oss',

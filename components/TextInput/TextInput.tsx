@@ -7,14 +7,13 @@ import { EyeFilledIcon, EyeSlashFilledIcon } from '../icons';
 
 interface Props {
   label: string;
-  type: 'text' | 'password' | 'email' | 'tel';
-  value: string;
+  type: 'text' | 'password' | 'email' | 'tel' | 'number';
+  value: string | undefined;
   onChange: (value: string) => void;
   multiline?: boolean;
   isRequired?: boolean;
   errorText?: string;
   isError?: boolean;
-  defaultValue?: string;
 }
 
 export function TextInput({
@@ -26,13 +25,11 @@ export function TextInput({
   isRequired = false,
   errorText,
   isError,
-  defaultValue = '',
 }: Props) {
   const [showPassword, setShowPassword] = useState(false);
 
   return multiline ? (
     <Textarea
-      defaultValue={defaultValue}
       errorMessage={errorText}
       isInvalid={isError}
       isRequired={isRequired}
@@ -44,7 +41,6 @@ export function TextInput({
     />
   ) : (
     <Input
-      defaultValue={defaultValue}
       endContent={
         type === 'password' ? (
           <button

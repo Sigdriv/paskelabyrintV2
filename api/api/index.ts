@@ -4,3 +4,5 @@ export * from './user';
 export type * from './user/types';
 export type * from './utils';
 export * from './users';
+export * from './teams';
+export type * from './teams/types';

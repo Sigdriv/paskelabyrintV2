@@ -9,4 +9,6 @@ export const urls = {
   resetPassword: (token: string) => `/api/auth/reset-password/${token}`,
   getUsers: '/api/users',
   updateUser: '/api/user',
+
+  postTeam: '/api/teams',
 } as const;
