@@ -72,7 +72,7 @@ export function Card({
             </div>
           )}
 
-          {header && <Header1>{header}</Header1>}
+          {header && <Header1 isCardHeader>{header}</Header1>}
         </CardHeader>
 
         <CardBody>{children}</CardBody>

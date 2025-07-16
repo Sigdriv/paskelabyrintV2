@@ -1,5 +1,7 @@
 'use client';
 
+import type { JSX } from 'react';
+
 import {
   Modal,
   ModalBody,
@@ -30,7 +32,12 @@ export function Dialog({
   isSubmitting = false,
 }: Props) {
   return (
-    <Modal backdrop="blur" isOpen={isOpen} onOpenChange={onClose}>
+    <Modal
+      backdrop="blur"
+      isOpen={isOpen}
+      placement="center"
+      onOpenChange={onClose}
+    >
       <ModalContent>
         {(onClose) => (
           <>
@@ -39,7 +46,7 @@ export function Dialog({
             <ModalBody>{children}</ModalBody>
 
             <ModalFooter>
-              <Button onClick={onClose}>Close</Button>
+              <Button onClick={onClose}>Avbryt</Button>
 
               <Button
                 color={isDelete ? 'danger' : 'default'}
@@ -47,7 +54,7 @@ export function Dialog({
                 variant="solid"
                 onClick={onSubmit}
               >
-                Submit
+                {isDelete ? 'Slett' : 'Lagre'}
               </Button>
             </ModalFooter>
           </>

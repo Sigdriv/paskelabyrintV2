@@ -6,11 +6,12 @@ import { subtitle, title } from './primitives';
 
 interface Props {
   children: ReactNode;
+  isCardHeader?: boolean;
 }
 
-export function Header1({ children }: Props) {
+export function Header1({ children, isCardHeader }: Props) {
   return (
-    <div className="mb-2">
+    <div className={isCardHeader ? 'mb-2' : 'mb-8'}>
       <span className={title({ size: 'sm' })}>{children}</span>
     </div>
   );

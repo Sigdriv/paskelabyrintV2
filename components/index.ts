@@ -8,6 +8,7 @@ export { Form } from './Form/Form';
 export { InfoBox } from './InfoBox/InfoBox';
 export { InternalLink } from './Link/InternalLink';
 export { NavBar } from './NavBar/NavBar';
+export { QueryError } from './QueryError/QueryError';
 export { Select } from './Select/Select';
 export { SigninWithGoogle } from './SigninWithGoogle/SigninWithGoogle';
 export { Skeleton } from './Skeleton/Skeleton';

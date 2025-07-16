@@ -11,4 +11,6 @@ export const urls = {
   updateUser: '/api/user',
 
   postTeam: '/api/teams',
+  getTeams: '/api/teams',
+  deleteTeam: (id: string) => `/api/teams/${id}`,
 } as const;

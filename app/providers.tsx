@@ -12,7 +12,12 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import { addToast, ToastProvider } from '@heroui/react';
-import { errorDescriptionMapper, errorTitleMapper, TkError } from '@http';
+import {
+  conflictErrorMapper,
+  errorDescriptionMapper,
+  errorTitleMapper,
+  TkError,
+} from '@http';
 
 import { UserProvider } from './UserContext';
 
@@ -25,7 +30,10 @@ function onError(error: TkError | Error) {
   if (error instanceof TkError) {
     addToast({
       title: errorTitleMapper[error.statusCode],
-      description: errorDescriptionMapper[error.statusCode],
+      description:
+        error.statusCode === 409
+          ? conflictErrorMapper[error?.data]
+          : errorDescriptionMapper[error.statusCode],
       color: 'danger',
     });
   } else {

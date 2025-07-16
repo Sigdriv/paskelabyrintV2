@@ -7,7 +7,8 @@ export type Team = {
   youngestParticipantAge?: string;
   oldestParticipantAge?: string;
   createdAt: string;
-  updatedAt: string;
 };
 
-export type NewTeam = Omit<Team, 'id' | 'createdAt' | 'updatedAt'>;
+export type NewTeam = Omit<Team, 'id' | 'createdAt'>;
+
+export type TeamsResponse = Pick<Team, 'id' | 'createdAt'>;

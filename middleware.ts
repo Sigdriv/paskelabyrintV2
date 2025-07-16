@@ -33,13 +33,11 @@ export async function middleware(req: NextRequest) {
 
   if (isPublicRoute) return;
 
-  if (isDevRoute && !isDevUser) {
+  if (isDevRoute && !isDevUser)
     return Response.redirect(new URL('/admin', req.url));
-  }
 
-  if (isAminRoute && !isAdminUser) {
+  if (isAminRoute && !isAdminUser)
     return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, req.url));
-  }
 
   if (!isLoggedIn && DEFAULT_LOGIN_REDIRECT === pathname)
     return Response.redirect(new URL(authRoutes[0], req.url));
