@@ -17,7 +17,7 @@ export function Answers({ answers }: Props) {
   }, [answers]);
 
   return (
-    <div ref={scrollRef} className="mb-4 h-[30rem] overflow-y-auto">
+    <div ref={scrollRef} className="mb-4 h-120 overflow-y-auto">
       {answers.length === 0 && (
         <div className="flex w-full justify-center">
           <p className="text-gray-500">Ingen svar registrert</p>

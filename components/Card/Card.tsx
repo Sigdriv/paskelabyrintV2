@@ -50,7 +50,7 @@ export function Card({
 }: Props) {
   return (
     <div
-      className={`${alignmentClasses[align]} ${readyState ? 'h-[40rem]' : ''} ${width === 'full' ? 'w-full' : width}`}
+      className={`${alignmentClasses[align]} ${readyState ? 'h-160' : ''} ${width === 'full' ? 'w-full' : width}`}
     >
       <HeroCard
         className={`w-full max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-4 ${fullHeight ? 'h-full' : ''}`}

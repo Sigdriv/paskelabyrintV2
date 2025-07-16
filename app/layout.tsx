@@ -57,7 +57,7 @@ export default function RootLayout({ children }: Props) {
           <div className="relative flex flex-col h-screen">
             <NavBar />
 
-            <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+            <main className="container mx-auto max-w-7xl pt-16 px-6 grow">
               {children}
             </main>
 

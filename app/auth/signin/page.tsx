@@ -85,7 +85,7 @@ export default function SignIn() {
             </div>
           </div>
 
-          <div className=" mt-[-2.5rem]">
+          <div className=" -mt-10">
             <Checkbox
               isChecked={credentials.remember}
               label="Husk meg"
