@@ -53,14 +53,15 @@ export default function BliMed() {
       schema.numberOfParticipants,
       team.numberOfParticipants
     ),
-    youngestParticipantAge: checkSchemaError(
-      schema.youngestParticipantAge,
-      team.youngestParticipantAge
-    ),
-    oldestParticipantAge: checkSchemaError(
-      schema.oldestParticipantAge,
-      team.oldestParticipantAge
-    ),
+    youngestParticipantAge: team.youngestParticipantAge
+      ? checkSchemaError(
+          schema.youngestParticipantAge,
+          team.youngestParticipantAge
+        )
+      : '',
+    oldestParticipantAge: team.oldestParticipantAge
+      ? checkSchemaError(schema.oldestParticipantAge, team.oldestParticipantAge)
+      : '',
   };
 
   const errors = Object.values(fieldError).filter((error) => !!error);
@@ -132,7 +133,6 @@ export default function BliMed() {
           <div className="flex flex-col sm:flex-row gap-4 w-full">
             <Skeleton isLoading={isFetchingUser}>
               <TextInput
-                isRequired
                 errorText={fieldError.youngestParticipantAge}
                 isError={
                   !!fieldError.youngestParticipantAge && isSubmitAttempted
@@ -148,7 +148,6 @@ export default function BliMed() {
 
             <Skeleton isLoading={isFetchingUser}>
               <TextInput
-                isRequired
                 errorText={fieldError.oldestParticipantAge}
                 isError={!!fieldError.oldestParticipantAge && isSubmitAttempted}
                 label="Eldste deltaker alder"

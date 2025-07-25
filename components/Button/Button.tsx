@@ -11,6 +11,7 @@ type BaseProps = {
   isLoading?: boolean;
   color?: 'default' | 'danger';
   isIconOnly?: boolean;
+  isDisabled?: boolean;
 };
 
 type Props = BaseProps &
@@ -41,6 +42,7 @@ export function Button({
   isIconOnly = false,
   type,
   href,
+  isDisabled = false,
 }: Props) {
   const router = useRouter();
 
@@ -55,6 +57,7 @@ export function Button({
       <HeroButton
         fullWidth
         color={color}
+        isDisabled={isDisabled}
         isIconOnly={isIconOnly}
         isLoading={isLoading}
         type={type}

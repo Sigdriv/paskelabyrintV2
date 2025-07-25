@@ -1,4 +1,4 @@
-import type { Team } from '@api';
+import type { GetTeamsParams, Team } from '@api';
 import type { TkError } from '@http';
 
 import { getTeams } from '@api';
@@ -6,11 +6,13 @@ import { useQuery } from '@tanstack/react-query';
 
 import { queryKeys } from '../queryKeys';
 
-export function useTeams() {
-  const queryKey = queryKeys.getTeams;
+export function useTeams({
+  isContactPersonTeams = false,
+}: GetTeamsParams = {}) {
+  const queryKey = queryKeys.getTeams(isContactPersonTeams);
 
   return useQuery<Team[], TkError>({
-    queryFn: getTeams,
+    queryFn: () => getTeams({ isContactPersonTeams }),
     queryKey,
   });
 }
