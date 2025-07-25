@@ -20,7 +20,7 @@ import { ThemeSwitch } from '../theme-switch';
 import { Menu } from '../Menu/Menu';
 import { InternalLink } from '../Link/InternalLink';
 
-import { DevMenu } from './utils';
+import { AdminMenu, DevMenu, UserMenu } from './utils';
 
 export const NavBar = () => {
   const { user } = useUser();
@@ -86,18 +86,12 @@ export const NavBar = () => {
           menus={[
             // TODO: Add the rest of the menus
             ...(user.role === 'DEV' ? DevMenu : []),
-            {
-              section: 'Test',
-              items: [
-                { label: 'My Profile', href: '/' },
-                { label: 'My Settings', href: '/settings' },
-                { label: 'Team Settings', href: '/team-settings' },
-                { label: 'Analytics', href: '/analytics' },
-                { label: 'System', href: '/system' },
-                { label: 'Configurations', href: '/configurations' },
-                { label: 'Help & Feedback', href: '/help-and-feedback' },
-              ],
-            },
+            ...(user.role === 'ADMIN' || user.role === 'DEV' ? AdminMenu : []),
+            ...(user.role === 'USER' ||
+            user.role === 'ADMIN' ||
+            user.role === 'DEV'
+              ? UserMenu
+              : []),
             {
               section: '',
               items: [

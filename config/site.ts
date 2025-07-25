@@ -17,7 +17,7 @@ const items = [
 
 export const siteConfig = {
   name: 'Kor ska oss reis',
-  description: 'Make beautiful websites regardless of your design experience.',
+  // description: 'Make beautiful websites regardless of your design experience.',
   navItems: [
     ...items,
     {

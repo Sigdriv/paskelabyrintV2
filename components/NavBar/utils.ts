@@ -9,3 +9,23 @@ export const DevMenu: MenuSection[] = [
     ],
   },
 ];
+
+export const AdminMenu: MenuSection[] = [
+  {
+    section: 'Admin',
+    items: [
+      { label: 'Admin', href: '/admin' },
+      { label: 'Alle lag', href: '/admin/alle-lag' },
+    ],
+  },
+];
+
+export const UserMenu: MenuSection[] = [
+  {
+    section: 'Bruker',
+    items: [
+      { label: 'Min side', href: '/minside' },
+      { label: 'Mine lag', href: '/minside/lag' },
+    ],
+  },
+];
