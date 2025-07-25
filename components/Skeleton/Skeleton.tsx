@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 'use client';
 
 import { Skeleton as HeroSkeleton } from '@heroui/react';
@@ -5,7 +6,6 @@ import { Skeleton as HeroSkeleton } from '@heroui/react';
 import { TextInput } from '../TextInput/TextInput';
 import { Select } from '../Select/Select';
 import { Card } from '../Card/Card';
-import { Button } from '../Button/Button';
 
 type SelectElement = 'textInput' | 'select';
 
@@ -58,7 +58,7 @@ export function Skeleton({ children, isLoading, count, elements }: Props) {
                 isLoaded={!isLoading}
               >
                 <div className="w-96 min-h-40">
-                  <Card header="" width="max-w-md" />
+                  <Card children={null} header="" width="max-w-md" />
                 </div>
               </HeroSkeleton>
             ))}

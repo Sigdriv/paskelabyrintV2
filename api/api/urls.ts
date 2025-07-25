@@ -1,6 +1,12 @@
 export const urls = {
   signIn: '/api/auth/login',
   signUp: '/api/auth/signup',
+  startPasskeyRegistration: '/api/auth/passkey/register-options',
+  finishPasskeyRegistration: '/api/auth/passkey/finish-registration',
+
+  verifyPasskeyLogin: '/api/auth/passkey/verify-passkey-login',
+  getLoginOptions: '/api/auth/passkey/login-options',
+
   getUser: (userId?: string) => (userId ? `/api/user/${userId}` : '/api/user'),
   googleSignin: '/api/auth/google/login',
   signOut: '/api/auth/logout',

@@ -1,6 +1,7 @@
 'use client';
 
 import type { TkError } from '@http';
+import type { JSX } from 'react';
 
 import { errorDescriptionMapper, errorTitleMapper } from '@http';
 import {

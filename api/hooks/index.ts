@@ -11,3 +11,8 @@ export { useTeams } from './teams/useTeams';
 export { useUpdateUser } from './user/useUpdateUser';
 export { useUsers } from './users/useUsers';
 export { useValidateToken } from './auth/useValidateToken';
+
+export { useFinishPasskeyRegistration } from './auth/passkey/useFinishPasskeyRegistration';
+export { useLoginOptions } from './auth/passkey/useLoginOptions';
+export { useRegisterPasskey } from './auth/passkey/useRegisterPasskey';
+export { useVerifyPasskeyLogin } from './auth/passkey/useVerifyPasskeyLogin';

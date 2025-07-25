@@ -4,7 +4,8 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:8080/:path*',
+        destination: 'https://api.paskelabyrint.no/:path*',
+        // destination: 'http://localhost:8080/:path*',
       },
     ];
   },

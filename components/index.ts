@@ -10,7 +10,6 @@ export { InternalLink } from './Link/InternalLink';
 export { NavBar } from './NavBar/NavBar';
 export { QueryError } from './QueryError/QueryError';
 export { Select } from './Select/Select';
-export { SigninWithGoogle } from './SigninWithGoogle/SigninWithGoogle';
 export { Skeleton } from './Skeleton/Skeleton';
 export { Table } from './Table/Table';
 export { TextInput } from './TextInput/TextInput';

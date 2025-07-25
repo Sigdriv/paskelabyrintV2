@@ -5,10 +5,7 @@ import { isNumeric, notUndefined } from './utils';
 
 export function globalSchema() {
   const createStringSchema = (label: string, min: number, max: number) => {
-    let stringSchema = z.string({
-      invalid_type_error: `${label} er påkrevd`,
-      required_error: `${label} er påkrevd`,
-    });
+    let stringSchema = z.string({ error: `${label} er påkrevd` });
 
     if (max === min) {
       stringSchema = stringSchema
@@ -39,7 +36,7 @@ export function globalSchema() {
       return z.union([
         z.literal(''),
         z
-          .string({ required_error: `${label} er påkrevd` })
+          .string({ error: `${label} er påkrevd` })
           .max(max, { message: `${label} kan ikke være mer enn ${max} tegn` })
           .email({ message: `${label} er ugyldig` })
           .optional(),
@@ -47,7 +44,7 @@ export function globalSchema() {
     }
 
     return z
-      .string({ required_error: `${label} er påkrevd` })
+      .string({ error: `${label} er påkrevd` })
       .min(1, `${label} er påkrevd`)
       .max(max, { message: `${label} kan ikke være mer enn ${max} tegn` })
       .email({ message: `${label} er ugyldig` });
@@ -55,10 +52,7 @@ export function globalSchema() {
 
   const createPhoneNrSchema = (label = 'Telefonnummer', optional = false) => {
     return z
-      .string({
-        invalid_type_error: `${label} er påkrevd`,
-        required_error: `${label} er påkrevd`,
-      })
+      .string({ error: `${label} er påkrevd` })
       .refine((value) => optional || !!value, {
         message: `${label} er påkrevd`,
       })
@@ -92,10 +86,7 @@ export function globalSchema() {
 
   const createIntSchema = (label: string, min: number, max: number) => {
     const numberSchema = z
-      .number({
-        invalid_type_error: `${label} er påkrevd`,
-        required_error: `${label} er påkrevd`,
-      })
+      .number({ error: `${label} er påkrevd` })
       .int({ message: `${label} må være et heltall` })
       .min(min, `${label} må være minst ${min}`)
       .max(max, `${label} kan ikke være mer enn ${max}`);
@@ -107,10 +98,7 @@ export function globalSchema() {
     };
 
     const stringSchema = z
-      .string({
-        invalid_type_error: `${label} er påkrevd`,
-        required_error: `${label} er påkrevd`,
-      })
+      .string({ error: `${label} er påkrevd` })
       .refine(isNumeric, {
         message: `${label} må være et gyldig tall`,
       })

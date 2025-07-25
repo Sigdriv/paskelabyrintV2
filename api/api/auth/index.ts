@@ -1,8 +1,13 @@
 import type {
+  CreatePasskey,
   CreateUser,
   Credentials,
+  FinishPasskeyLogin,
   ForgottPassword,
+  PasskeyLoginOptions,
   ResetPassword,
+  SigninPasskey,
+  StartRegistrationPasskeyRes,
   ValidateToken,
 } from './types';
 import type { HttpResponse } from '../utils';
@@ -44,4 +49,36 @@ export function resetPassword({
   body,
 }: ResetPasswordParams): Promise<HttpResponse> {
   return post({ url: urls.resetPassword(token), body });
+}
+
+export async function fetchLoginOptions(
+  body: SigninPasskey
+): Promise<PasskeyLoginOptions> {
+  const { publicKey } = await post<{ publicKey: PasskeyLoginOptions }>({
+    url: urls.getLoginOptions,
+    body,
+  });
+
+  return publicKey;
+}
+
+export function verifyPasskeyLogin(
+  assertionResponse: FinishPasskeyLogin
+): Promise<void> {
+  return post({ url: urls.verifyPasskeyLogin, body: assertionResponse });
+}
+
+export async function startPasskeyRegistration(
+  body: CreatePasskey
+): Promise<StartRegistrationPasskeyRes> {
+  return await post<StartRegistrationPasskeyRes>({
+    url: urls.startPasskeyRegistration,
+    body,
+  });
+}
+
+export function finishPasskeyRegistration(
+  body: any
+): Promise<{ message: string }> {
+  return post({ url: urls.finishPasskeyRegistration, body });
 }

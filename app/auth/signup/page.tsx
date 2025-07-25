@@ -1,11 +1,13 @@
 'use client';
 
-import { Button, Card, Form, SigninWithGoogle, TextInput } from '@components';
+import { Button, Card, Form, TextInput } from '@components';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { checkSchemaError } from '@schema';
 import { useCreateUser } from '@hooks';
 import { addToast } from '@heroui/react';
+
+import { SignInOptions } from '../SigninOptions/SignInOptions';
 
 import { initialUser } from './utils';
 import { useSchema } from './schema';
@@ -115,7 +117,7 @@ export default function Signup() {
             </Button>
           </div>
 
-          <SigninWithGoogle />
+          <SignInOptions />
         </div>
       </Form>
     </Card>

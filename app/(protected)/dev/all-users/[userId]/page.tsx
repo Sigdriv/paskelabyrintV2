@@ -54,68 +54,64 @@ export default function EditUser() {
 
   return (
     <Card align="center" header={`Rediger bruker ${user?.name || ''}`}>
-      <Form action="submit" onAction={handleSubmitUser}>
-        <Skeleton
-          elements={['textInput', 'textInput', 'select']}
-          isLoading={isPending}
-        />
+      <Skeleton
+        elements={['textInput', 'textInput', 'select']}
+        isLoading={isPending}
+      />
 
-        {!isPending && !user && (
-          <p className="text-default-500">Fant ingen bruker med ID {userId}</p>
-        )}
+      {!isPending && !user && (
+        <p className="text-default-500">Fant ingen bruker med ID {userId}</p>
+      )}
 
-        {!isPending && user && user.isGoogle && (
-          <p className="text-default-500">
-            Denne brukeren er opprettet via Google og kan ikke redigeres.
-          </p>
-        )}
+      {!isPending && user && user.isGoogle && (
+        <p className="text-default-500">
+          Denne brukeren er opprettet via Google og kan ikke redigeres.
+        </p>
+      )}
 
-        {user && !user.isGoogle && !isPending && (
-          <>
-            <div className="w-full flex flex-col gap-4">
-              <TextInput
-                isRequired
-                defaultValue={user.name}
-                errorText={fieldError.name}
-                isError={!!fieldError.name && submitAttempted}
-                label="Navn"
-                type="text"
-                value={user.name}
-                onChange={(value) => setUser({ ...user, name: value })}
-              />
+      {user && !user.isGoogle && !isPending && (
+        <Form action="submit" onAction={handleSubmitUser}>
+          <div className="w-full flex flex-col gap-4">
+            <TextInput
+              isRequired
+              errorText={fieldError.name}
+              isError={!!fieldError.name && submitAttempted}
+              label="Navn"
+              type="text"
+              value={user.name}
+              onChange={(value) => setUser({ ...user, name: value })}
+            />
 
-              <TextInput
-                isRequired
-                defaultValue={user.email}
-                errorText={fieldError.email}
-                isError={!!fieldError.email && submitAttempted}
-                label="E-post"
-                type="email"
-                value={user.email}
-                onChange={(value) => setUser({ ...user, email: value })}
-              />
+            <TextInput
+              isRequired
+              errorText={fieldError.email}
+              isError={!!fieldError.email && submitAttempted}
+              label="E-post"
+              type="email"
+              value={user.email}
+              onChange={(value) => setUser({ ...user, email: value })}
+            />
 
-              <Select<Role>
-                isRequired
-                errorText={fieldError.role}
-                isError={!!fieldError.role && submitAttempted}
-                label="Rolle"
-                options={[
-                  { value: 'DEV', label: 'Dev' },
-                  { value: 'ADMIN', label: 'Admin' },
-                  { value: 'USER', label: 'User' },
-                ]}
-                value={user.role}
-                onChange={(value) => setUser({ ...user, role: value })}
-              />
-            </div>
+            <Select<Role>
+              isRequired
+              errorText={fieldError.role}
+              isError={!!fieldError.role && submitAttempted}
+              label="Rolle"
+              options={[
+                { value: 'DEV', label: 'Dev' },
+                { value: 'ADMIN', label: 'Admin' },
+                { value: 'USER', label: 'User' },
+              ]}
+              value={user.role}
+              onChange={(value) => setUser({ ...user, role: value })}
+            />
+          </div>
 
-            <Button isLoading={isUpdating} type="submit" variant="solid">
-              Oppdater bruker
-            </Button>
-          </>
-        )}
-      </Form>
+          <Button isLoading={isUpdating} type="submit" variant="solid">
+            Oppdater bruker
+          </Button>
+        </Form>
+      )}
     </Card>
   );
 }

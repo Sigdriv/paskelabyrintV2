@@ -20,6 +20,7 @@ interface Props {
   onClose: () => void;
   onSubmit: () => void;
   isSubmitting?: boolean;
+  submitText?: string;
 }
 
 export function Dialog({
@@ -30,6 +31,7 @@ export function Dialog({
   onClose,
   onSubmit,
   isSubmitting = false,
+  submitText = 'Lagre',
 }: Props) {
   return (
     <Modal
@@ -54,7 +56,7 @@ export function Dialog({
                 variant="solid"
                 onClick={onSubmit}
               >
-                {isDelete ? 'Slett' : 'Lagre'}
+                {isDelete ? 'Slett' : submitText}
               </Button>
             </ModalFooter>
           </>

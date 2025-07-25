@@ -8,7 +8,7 @@ export function useWebsocket<T>({ url }: Params) {
   const [data, setData] = useState<T>();
   const [error, setError] = useState<Event | null>(null);
   const [readyState, setReadyState] = useState<WebSocket['readyState']>();
-  const ws = useRef<WebSocket>();
+  const ws = useRef<WebSocket | null>(null);
 
   const send = (data: Object) => {
     if (ws.current) ws.current.send(JSON.stringify(data));
