@@ -18,5 +18,7 @@ export const urls = {
 
   postTeam: '/api/teams',
   getTeams: (queryParams: string) => `/api/teams${queryParams}`,
+  getTeam: (teamId: string) => `/api/teams/${teamId}`,
   deleteTeam: (id: string) => `/api/teams/${id}`,
+  updateTeam: '/api/teams',
 } as const;

@@ -7,16 +7,19 @@ import { postTeam } from '@api';
 
 import { queryKeys } from '../queryKeys';
 
-export function usePostTeam({
-  onSuccess,
-}: HooksParams<TeamsResponse, NewTeam>) {
+interface Params extends HooksParams<TeamsResponse, NewTeam> {
+  userEmail: string;
+}
+
+export function usePostTeam({ onSuccess, userEmail }: Params) {
   const queryClient = useQueryClient();
-  const queryKey = queryKeys.getTeams;
 
   return useMutation<TeamsResponse, TkError, NewTeam>({
     mutationFn: postTeam,
     onSuccess: ({ id, createdAt }, variables) => {
       onSuccess({ id, createdAt }, variables);
+
+      const queryKey = queryKeys.getTeams(variables.contactEmail !== userEmail);
 
       const exisitngTeams = queryClient.getQueryData<Team[]>(queryKey);
 

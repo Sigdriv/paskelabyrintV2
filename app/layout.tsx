@@ -52,6 +52,7 @@ export default function RootLayout({ children }: Props) {
           themeProps={{
             attribute: 'class',
             enableSystem: true,
+            defaultTheme: 'system',
           }}
         >
           <div className="relative flex flex-col h-screen">

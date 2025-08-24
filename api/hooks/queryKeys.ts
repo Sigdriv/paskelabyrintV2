@@ -6,4 +6,5 @@ export const queryKeys = {
     'getTeams',
     isContactPersonTeams,
   ],
+  getTeam: (teamId: string) => ['getTeam', teamId],
 };

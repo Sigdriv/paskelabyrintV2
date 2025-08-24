@@ -3,7 +3,7 @@
 import type { NewTeam } from '@api';
 
 import { useUser } from '@app';
-import { Button, Card, Form, Skeleton, TextInput } from '@components';
+import { Card } from '@components';
 import { useEffect, useState } from 'react';
 import { checkSchemaError } from '@schema';
 import { usePostTeam } from '@hooks';
@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 
 import { useSchema } from './schema';
 import { initialTeam } from './utils';
+import { JoinForm } from './JoinForm';
 
 export default function BliMed() {
   const router = useRouter().push;
@@ -23,6 +24,7 @@ export default function BliMed() {
   const [team, setTeam] = useState<NewTeam>(initialTeam);
 
   const { mutate, isPending } = usePostTeam({
+    userEmail: user?.email || '',
     onSuccess: (_, { teamName }) => {
       addToast({
         title: 'Lag opprettet',
@@ -74,97 +76,16 @@ export default function BliMed() {
 
   return (
     <Card align="center" header="Bli med">
-      <Form action="submit" onAction={handleSubmit}>
-        <div className="flex flex-col gap-4 w-full">
-          <div className="flex flex-col sm:flex-row gap-4 w-full">
-            <Skeleton isLoading={isFetchingUser}>
-              <TextInput
-                isRequired
-                errorText={fieldError.contactName}
-                isError={!!fieldError.contactName && isSubmitAttempted}
-                label="Kontaktperson navn"
-                type="text"
-                value={team.contactName}
-                onChange={(value) => setTeam({ ...team, contactName: value })}
-              />
-            </Skeleton>
-
-            <Skeleton isLoading={isFetchingUser}>
-              <TextInput
-                isRequired
-                errorText={fieldError.contactEmail}
-                isError={!!fieldError.contactEmail && isSubmitAttempted}
-                label="Kontaktperson epost"
-                type="email"
-                value={team.contactEmail}
-                onChange={(value) => setTeam({ ...team, contactEmail: value })}
-              />
-            </Skeleton>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 w-full">
-            <Skeleton isLoading={isFetchingUser}>
-              <TextInput
-                isRequired
-                errorText={fieldError.teamName}
-                isError={!!fieldError.teamName && isSubmitAttempted}
-                label="Lagnavn"
-                type="text"
-                value={team.teamName}
-                onChange={(value) => setTeam({ ...team, teamName: value })}
-              />
-            </Skeleton>
-
-            <Skeleton isLoading={isFetchingUser}>
-              <TextInput
-                isRequired
-                errorText={fieldError.numberOfParticipants}
-                isError={!!fieldError.numberOfParticipants && isSubmitAttempted}
-                label="Antall deltakere"
-                type="number"
-                value={team.numberOfParticipants}
-                onChange={(value) =>
-                  setTeam({ ...team, numberOfParticipants: value })
-                }
-              />
-            </Skeleton>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 w-full">
-            <Skeleton isLoading={isFetchingUser}>
-              <TextInput
-                errorText={fieldError.youngestParticipantAge}
-                isError={
-                  !!fieldError.youngestParticipantAge && isSubmitAttempted
-                }
-                label="Yngste deltaker alder"
-                type="number"
-                value={team.youngestParticipantAge}
-                onChange={(value) =>
-                  setTeam({ ...team, youngestParticipantAge: value })
-                }
-              />
-            </Skeleton>
-
-            <Skeleton isLoading={isFetchingUser}>
-              <TextInput
-                errorText={fieldError.oldestParticipantAge}
-                isError={!!fieldError.oldestParticipantAge && isSubmitAttempted}
-                label="Eldste deltaker alder"
-                type="number"
-                value={team.oldestParticipantAge}
-                onChange={(value) =>
-                  setTeam({ ...team, oldestParticipantAge: value })
-                }
-              />
-            </Skeleton>
-          </div>
-
-          <Button isLoading={isPending} type="submit" variant="solid">
-            Bli med
-          </Button>
-        </div>
-      </Form>
+      <JoinForm
+        fieldError={fieldError}
+        handleSubmit={handleSubmit}
+        isFetchingData={isFetchingUser}
+        isPending={isPending}
+        isSubmitAttempted={isSubmitAttempted}
+        setTeam={setTeam}
+        team={team}
+        type="create"
+      />
     </Card>
   );
 }

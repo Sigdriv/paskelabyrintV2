@@ -6,5 +6,4 @@ export const initialUser: CreateUser = {
   password: '',
   phoneNr: '',
   confirmPassword: '',
-  isGoogle: false,
 };

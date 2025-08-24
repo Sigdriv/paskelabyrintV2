@@ -10,7 +10,7 @@ import { queryKeys } from '../queryKeys';
 export function useDeleteTeam({ onSuccess }: HooksParams) {
   const queryClient = useQueryClient();
 
-  const queryKey = queryKeys.getTeams;
+  const queryKey = queryKeys.getTeams(false);
 
   return useMutation<HttpResponse, TkError, { id: string }>({
     mutationFn: ({ id }) => deleteTeam(id),

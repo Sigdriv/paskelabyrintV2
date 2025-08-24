@@ -17,8 +17,8 @@ import { useSignOut } from '@hooks';
 import { useState } from 'react';
 
 import { ThemeSwitch } from '../theme-switch';
-import { Menu } from '../Menu/Menu';
 import { InternalLink } from '../Link/InternalLink';
+import { Menu } from '../Menu/Menu';
 
 import { AdminMenu, DevMenu, UserMenu } from './utils';
 
@@ -31,7 +31,6 @@ export const NavBar = () => {
   const navItems = user ? siteConfig.signinItems : siteConfig.navItems;
 
   return (
-    // <HeroUINavbar maxWidth="xl" position="sticky">
     <HeroUINavbar isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
@@ -42,7 +41,6 @@ export const NavBar = () => {
           </NextLink>
         </NavbarBrand>
 
-        {/* <ul className="hidden sm:flex gap-4 justify-start ml-2"> */}
         <ul className="hidden sm:flex flex-nowrap gap-4 justify-start ml-2 whitespace-nowrap">
           {navItems.map((item) => (
             <InternalLink

@@ -17,7 +17,15 @@ export default function EditUser() {
 
   // TODO: Fix update user
   const { data, isPending } = useGetUser({ userId });
-  const { mutate, isPending: isUpdating } = useUpdateUser();
+  const { mutate, isPending: isUpdating } = useUpdateUser({
+    onSuccess: () => {
+      addToast({
+        title: 'Bruker oppdatert',
+        description: 'Brukeren ble oppdatert.',
+        color: 'success',
+      });
+    },
+  });
 
   const [user, setUser] = useState<User | undefined>();
   const [submitAttempted, setSubmitAttempted] = useState(false);

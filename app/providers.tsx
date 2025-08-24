@@ -75,7 +75,8 @@ export function Providers({ children, themeProps }: Props) {
           <UserProvider>
             <ToastProvider
               toastProps={{
-                timeout: 10000,
+                timeout: 5000,
+                shouldShowTimeoutProgress: true,
               }}
             />
 
