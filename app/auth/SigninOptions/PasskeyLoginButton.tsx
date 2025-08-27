@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Dialog, TextInput } from '@components';
+import { Button, Dialog, QueryError, TextInput } from '@components';
 import { addToast } from '@heroui/react';
 import { useLoginOptions, useVerifyPasskeyLogin } from '@hooks';
 import { TkError } from '@http';
@@ -18,18 +18,23 @@ export function PasskeyLoginButton() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [isSubmitAttempted, setIsSubmitAttempted] = useState(false);
+  const [error, setError] = useState<number | undefined>();
 
-  const { mutateAsync: loginOptions } = useLoginOptions();
-  const { mutateAsync: verifyPasskeyLogin } = useVerifyPasskeyLogin({
-    onSuccess: () => {
-      navigate('/dev');
-      addToast({
-        title: 'Innlogging vellykket',
-        description: 'Du er nå logget inn.',
-        color: 'success',
-      });
-    },
-  });
+  const { mutateAsync: loginOptions, isPending: isLoginPending } =
+    useLoginOptions();
+  const { mutateAsync: verifyPasskeyLogin, isPending: isVerifyPending } =
+    useVerifyPasskeyLogin({
+      onSuccess: () => {
+        navigate('/dev');
+        addToast({
+          title: 'Innlogging vellykket',
+          description: 'Du er nå logget inn.',
+          color: 'success',
+        });
+      },
+    });
+
+  const isLoading = isLoginPending || isVerifyPending;
 
   const fieldError = {
     email: checkSchemaError(schema.email, email),
@@ -39,6 +44,7 @@ export function PasskeyLoginButton() {
 
   const handlelogin = async () => {
     setIsSubmitAttempted(true);
+    setError(undefined);
     if (errors.length > 0) {
       return;
     }
@@ -53,6 +59,8 @@ export function PasskeyLoginButton() {
       await verifyPasskeyLogin({ email, credentials: assertion });
     } catch (error) {
       if (error instanceof TkError) {
+        if (error.message === 'No credentials found for user') setError(404);
+
         return;
       }
       addToast({
@@ -71,8 +79,10 @@ export function PasskeyLoginButton() {
       </Button>
 
       <Dialog
+        isForm
         header="Logg inn med passkey"
         isOpen={isDialogOpen}
+        isSubmitting={isLoading}
         submitText="Logg inn"
         onClose={() => setIsDialogOpen(false)}
         onSubmit={handlelogin}
@@ -85,6 +95,19 @@ export function PasskeyLoginButton() {
           type="email"
           value={email}
           onChange={(value) => setEmail(value)}
+        />
+
+        <QueryError
+          error={
+            error
+              ? new TkError({
+                  errorText:
+                    'Fant ingen passnøkkel for denne brukeren, vennligst logg inn med e-post og passord eller Google.',
+                  statusCode: 404,
+                })
+              : null
+          }
+          text="Fant ingen passnøkkel for denne brukeren, vennligst logg inn med e-post og passord eller Google."
         />
       </Dialog>
     </div>

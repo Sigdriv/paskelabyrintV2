@@ -11,6 +11,7 @@ import {
 } from '@heroui/react';
 
 import { Button } from '../Button/Button';
+import { Form } from '../Form/Form';
 
 interface Props {
   isOpen: boolean;
@@ -21,6 +22,7 @@ interface Props {
   onSubmit: () => void;
   isSubmitting?: boolean;
   submitText?: string;
+  isForm?: boolean;
 }
 
 export function Dialog({
@@ -32,6 +34,7 @@ export function Dialog({
   onSubmit,
   isSubmitting = false,
   submitText = 'Lagre',
+  isForm = false,
 }: Props) {
   return (
     <Modal
@@ -45,20 +48,40 @@ export function Dialog({
           <>
             <ModalHeader>{header}</ModalHeader>
 
-            <ModalBody>{children}</ModalBody>
+            {isForm ? (
+              <Form action="submit" onAction={onSubmit} isDialog>
+                <ModalBody className="w-full">{children}</ModalBody>
 
-            <ModalFooter>
-              <Button onClick={onClose}>Avbryt</Button>
+                <ModalFooter className="w-full">
+                  <Button onClick={onClose}>Avbryt</Button>
 
-              <Button
-                color={isDelete ? 'danger' : 'default'}
-                isLoading={isSubmitting}
-                variant="solid"
-                onClick={onSubmit}
-              >
-                {isDelete ? 'Slett' : submitText}
-              </Button>
-            </ModalFooter>
+                  <Button
+                    isLoading={isSubmitting}
+                    type="submit"
+                    variant="solid"
+                  >
+                    {submitText}
+                  </Button>
+                </ModalFooter>
+              </Form>
+            ) : (
+              <>
+                <ModalBody>{children}</ModalBody>
+
+                <ModalFooter>
+                  <Button onClick={onClose}>Avbryt</Button>
+
+                  <Button
+                    color={isDelete ? 'danger' : 'default'}
+                    isLoading={isSubmitting}
+                    variant="solid"
+                    onClick={onSubmit}
+                  >
+                    {isDelete ? 'Slett' : submitText}
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
           </>
         )}
       </ModalContent>

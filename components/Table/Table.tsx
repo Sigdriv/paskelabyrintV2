@@ -3,7 +3,6 @@
 import type { TkError } from '@http';
 import type { JSX } from 'react';
 
-import { errorDescriptionMapper, errorTitleMapper } from '@http';
 import {
   Table as HeroTable,
   TableBody,
@@ -13,8 +12,8 @@ import {
   TableRow,
 } from '@heroui/react';
 
-import { InfoBox } from '../InfoBox/InfoBox';
 import { Spinner } from '../Spinner/Spinner';
+import { QueryError } from '../QueryError/QueryError';
 
 interface Props {
   header: { label: string }[];
@@ -26,13 +25,8 @@ interface Props {
 
 export function Table({ header, items, emptyText, isLoading, error }: Props) {
   return (
-    <div>
-      <InfoBox
-        body={errorDescriptionMapper[error?.statusCode || 'unknown']}
-        header={errorTitleMapper[error?.statusCode || 'unknown']}
-        isVisible={!!error}
-        variant="danger"
-      />
+    <div className="flex flex-col gap-4">
+      <QueryError error={error} />
 
       <HeroTable isHeaderSticky isStriped>
         <TableHeader columns={header}>

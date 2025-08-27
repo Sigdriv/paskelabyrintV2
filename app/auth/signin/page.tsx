@@ -90,19 +90,19 @@ export default function SignIn() {
             />
           </div>
         </div>
-
-        <div className="w-full">
-          <div className="flex flex-row gap-2 w-full">
-            <Button href="signup">Opprett konto</Button>
-
-            <Button isLoading={isPending} type="submit" variant="solid">
-              Logg inn
-            </Button>
-          </div>
-
-          <SignInOptions />
-        </div>
       </Form>
+
+      <div className="w-full">
+        <div className="flex flex-row gap-2 w-full">
+          <Button href="signup">Opprett konto</Button>
+
+          <Button isLoading={isPending} type="submit" variant="solid">
+            Logg inn
+          </Button>
+        </div>
+
+        <SignInOptions />
+      </div>
     </Card>
   );
 }

@@ -11,6 +11,7 @@ interface Props {
   variant?: 'success' | 'warning' | 'danger' | 'default';
   endContent?: JSX.Element;
   isClosable?: boolean;
+  isQuery?: boolean;
 }
 
 export function InfoBox({
@@ -20,10 +21,11 @@ export function InfoBox({
   variant = 'default',
   endContent,
   isClosable = false,
+  isQuery = false,
 }: Props) {
   return (
     <Alert
-      className="mb-4 w-fit"
+      className={`w-fit ${isQuery ? 'border-l-4 border-red-500' : 'mb-4'}`}
       color={variant}
       description={body}
       endContent={endContent}

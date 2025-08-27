@@ -49,12 +49,12 @@ export function Skeleton({ children, isLoading, count, elements }: Props) {
         return (
           <div
             key={`${element}-${index}`}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full"
           >
             {Array.from({ length: count }).map((_, i) => (
               <HeroSkeleton
                 key={`${element}-${index}-${i}`}
-                className="rounded-medium w-fit mb-4"
+                className="rounded-medium w-full mb-4"
                 isLoaded={!isLoading}
               >
                 <div className="w-96 min-h-40">

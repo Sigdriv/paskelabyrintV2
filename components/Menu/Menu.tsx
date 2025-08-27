@@ -9,7 +9,6 @@ import {
   DropdownSection,
   DropdownTrigger,
 } from '@heroui/react';
-import { useRouter } from 'next/navigation';
 
 interface CommonMenu {
   label: string;
@@ -41,8 +40,6 @@ interface Props {
 }
 
 export function Menu({ children, menus }: Props) {
-  const navigate = useRouter().push;
-
   return (
     <Dropdown placement="bottom-end">
       <DropdownTrigger>{children}</DropdownTrigger>
@@ -56,7 +53,7 @@ export function Menu({ children, menus }: Props) {
                 color={color || 'default'}
                 href={href}
                 startContent={icon}
-                onClick={() => (onClick ? onClick() : navigate(href))}
+                onPress={() => onClick?.()}
               >
                 {label}
               </DropdownItem>

@@ -9,5 +9,6 @@ export function useVerifyPasskeyLogin({ onSuccess }: HooksParams<void, any>) {
   return useMutation<void, TkError, FinishPasskeyLogin>({
     mutationFn: verifyPasskeyLogin,
     onSuccess,
+    onError: () => {},
   });
 }

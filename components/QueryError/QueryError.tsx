@@ -34,15 +34,14 @@ export function QueryError({ error, header, text = '' }: Props) {
   };
 
   return (
-    <div className="flex w-full items-center justify-center">
-      <div className="w-120 ">
-        <InfoBox
-          body={text || textFromError()}
-          header={headerFromError()}
-          isVisible={!!error}
-          variant="danger"
-        />
-      </div>
+    <div className="flex items-center justify-center w-full max-w-120">
+      <InfoBox
+        isQuery
+        body={text || textFromError()}
+        header={headerFromError()}
+        isVisible={!!error}
+        variant="danger"
+      />
     </div>
   );
 }
