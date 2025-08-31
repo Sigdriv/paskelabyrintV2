@@ -78,6 +78,10 @@ export function globalSchema() {
         password: z.string(),
         confirmPassword: z.string(),
       })
+      .refine((data) => !!data.confirmPassword, {
+        message: 'Du må bekrefte passordet',
+        path: ['confirmPassword'], // peker på feltet som skal vise feilen
+      })
       .refine((data) => data.password === data.confirmPassword, {
         message: 'Passordene er ikke like',
         path: ['confirmPassword'], // peker på feltet som skal vise feilen
