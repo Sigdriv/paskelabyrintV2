@@ -53,6 +53,7 @@ export default function Signup() {
 
   return (
     <Card align="center" header="Opprett bruker">
+      {/* TODO: Fix error when trying to sign up with passkey and form logic */}
       <Form action="submit" onAction={handleSignup}>
         <div className="flex flex-col gap-4 w-full">
           <TextInput

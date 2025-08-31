@@ -46,6 +46,7 @@ export default function SignIn() {
 
   return (
     <Card align="center" header="Logg inn">
+      {/* TODO: Fix error when trying to sign in with passkey and form logic */}
       <Form action="submit" onAction={handleSignin}>
         <div className="flex flex-col gap-4 w-full">
           <TextInput
@@ -90,19 +91,19 @@ export default function SignIn() {
             />
           </div>
         </div>
-      </Form>
 
-      <div className="w-full">
-        <div className="flex flex-row gap-2 w-full">
-          <Button href="signup">Opprett konto</Button>
+        <div className="w-full">
+          <div className="flex flex-row gap-2 w-full">
+            <Button href="signup">Opprett konto</Button>
 
-          <Button isLoading={isPending} type="submit" variant="solid">
-            Logg inn
-          </Button>
+            <Button isLoading={isPending} type="submit" variant="solid">
+              Logg inn
+            </Button>
+          </div>
+
+          <SignInOptions />
         </div>
-
-        <SignInOptions />
-      </div>
+      </Form>
     </Card>
   );
 }

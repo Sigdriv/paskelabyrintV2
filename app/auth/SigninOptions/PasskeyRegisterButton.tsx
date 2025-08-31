@@ -81,6 +81,7 @@ export function PasskeyRegisterButton() {
       </Button>
 
       <Dialog
+        isForm
         header="Opprett passkey"
         isOpen={createPasskey}
         submitText="Opprett passkey"
